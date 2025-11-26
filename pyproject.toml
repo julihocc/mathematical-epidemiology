@@ -19,6 +19,7 @@ dependencies = [
     "seaborn>=0.13.2",
     "factor-analyzer>=0.5.1",
     "scikit-learn>=1.7.2",
+    "sympy",
 ]
 
 [tool.hatch.build.targets.wheel]
