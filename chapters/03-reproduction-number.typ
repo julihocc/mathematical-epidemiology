@@ -10,6 +10,56 @@ In the SIR model, $R_0$ is derived as:
 
 $ R_0 = frac(beta, gamma) $
 
+== Derivation for SIR Model
+
+For an epidemic to occur, the number of infected individuals must increase, meaning $d I / d t > 0$. From the SIR equations:
+
+$
+  frac(d I, d t) = beta S I - gamma I = (beta S - gamma) I
+$
+
+Thus, $d I / d t > 0$ if and only if $beta S - gamma > 0$, or:
+
+$
+  S > frac(gamma, beta)
+$
+
+At the start of an epidemic, almost everyone is susceptible, so $S approx N$. Therefore, the condition for spread is:
+
+$
+  N > frac(gamma, beta) arrow.double frac(beta N, gamma) > 1
+$
+
+Often, $beta$ is defined as the transmission rate per contact, so the force of infection is $beta S I / N$. In this formulation (used in our code), the condition becomes:
+
+$
+  frac(beta S I, N) - gamma I > 0 arrow.double frac(beta S, N) - gamma > 0
+$
+
+With $S approx N$, this simplifies to $beta - gamma > 0$, or $beta / gamma > 1$. So in our specific model formulation:
+
+$
+  R_0 = frac(beta, gamma)
+$
+
+== Estimation from Growth Rate
+
+In the early phase of an epidemic, $S approx N$ (constant). The equation for $I$ becomes:
+
+$
+  frac(d I, d t) approx (beta - gamma) I = r I
+$
+
+where $r = beta - gamma$ is the exponential growth rate. The solution is $I(t) = I_0 e^(r t)$.
+
+We can relate $R_0$ to the growth rate $r$:
+
+$
+  R_0 = frac(beta, gamma) = frac(r + gamma, gamma) = 1 + frac(r, gamma)
+$
+
+This allows us to estimate $R_0$ if we know the growth rate $r$ (from case data) and the recovery rate $gamma$ (from clinical data). The doubling time $T_d$ is related to $r$ by $T_d = ln(2) / r$.
+
 == Interpretation
 
 - If $R_0 < 1$, the infection will die out in the long run.
