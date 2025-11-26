@@ -2,7 +2,9 @@
 
 #show: project.with(
   title: "Mathematical Epidemiology",
-  authors: ("Author Name",),
+  authors: ("Juliho Castillo Colmenares",),
+  email: "julihocc@tec.mx",
+  institution: "Tec de Monterrey",
 )
 
 #include "chapters/01-introduction.typ"
