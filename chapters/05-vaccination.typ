@@ -29,3 +29,37 @@ $
 Pulse vaccination is a strategy where a fraction of the population is vaccinated in repeated pulses (e.g., every $T$ years) rather than continuously. This can be more effective in eradicating a disease than continuous vaccination.
 
 The theoretical condition for eradication under pulse vaccination is often derived by analyzing the stability of the disease-free periodic solution. If the period $T$ and the vaccination fraction $p$ are chosen such that the effective reproduction number averaged over the period is less than 1, the disease can be eradicated.
+== Visualizing Herd Immunity
+
+We can visualize how the effective reproduction number $R_v$ decreases with vaccination coverage $p$.
+
+=== Julia Example
+
+```julia
+using Plots
+
+R0 = 2.5
+p = 0:0.01:1
+Rv = R0 .* (1 .- p)
+
+plot(p, Rv, label="Rv", xlabel="Vaccination Coverage (p)", ylabel="Effective R0")
+hline!([1.0], label="Threshold", linestyle=:dash)
+```
+
+=== Python Example
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+R0 = 2.5
+p = np.linspace(0, 1, 100)
+Rv = R0 * (1 - p)
+
+plt.plot(p, Rv, label='Rv')
+plt.axhline(y=1.0, color='r', linestyle='--', label='Threshold')
+plt.xlabel('Vaccination Coverage (p)')
+plt.ylabel('Effective R0')
+plt.legend()
+plt.show()
+```

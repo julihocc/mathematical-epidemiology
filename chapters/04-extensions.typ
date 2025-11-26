@@ -59,3 +59,58 @@ $
 $
 
 If $R_0 > 1$, the system approaches an endemic equilibrium where the disease persists in the population.
+== Computational Examples
+
+We can simulate the SEIR model numerically.
+
+=== Julia Example
+
+```julia
+using DifferentialEquations
+using Plots
+
+function seir_model!(du, u, p, t)
+    S, E, I, R = u
+    beta, sigma, gamma = p
+    N = S + E + I + R
+
+    du[1] = -beta * S * I / N
+    du[2] = beta * S * I / N - sigma * E
+    du[3] = sigma * E - gamma * I
+    du[4] = gamma * I
+end
+
+u0 = [990.0, 10.0, 0.0, 0.0]
+p = (0.5, 0.2, 0.1) # beta, sigma, gamma
+tspan = (0.0, 160.0)
+prob = ODEProblem(seir_model!, u0, tspan, p)
+sol = solve(prob)
+plot(sol)
+```
+
+=== Python Example
+
+```python
+import numpy as np
+from scipy.integrate import odeint
+import matplotlib.pyplot as plt
+
+def seir_model(u, t, beta, sigma, gamma):
+    S, E, I, R = u
+    N = S + E + I + R
+
+    dSdt = -beta * S * I / N
+    dEdt = beta * S * I / N - sigma * E
+    dIdt = sigma * E - gamma * I
+    dRdt = gamma * I
+    return [dSdt, dEdt, dIdt, dRdt]
+
+u0 = [990, 10, 0, 0]
+t = np.linspace(0, 160, 160)
+beta, sigma, gamma = 0.5, 0.2, 0.1
+
+sol = odeint(seir_model, u0, t, args=(beta, sigma, gamma))
+plt.plot(t, sol)
+plt.legend(['S', 'E', 'I', 'R'])
+plt.show()
+```

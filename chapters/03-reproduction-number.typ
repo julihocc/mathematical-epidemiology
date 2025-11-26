@@ -60,6 +60,51 @@ $
 
 This allows us to estimate $R_0$ if we know the growth rate $r$ (from case data) and the recovery rate $gamma$ (from clinical data). The doubling time $T_d$ is related to $r$ by $T_d = ln(2) / r$.
 
+== Computational Estimation
+
+We can estimate the growth rate $r$ from early epidemic data and use it to calculate $R_0$.
+
+=== Julia Example
+
+```julia
+using LsqFit
+
+# Synthetic data (early exponential growth)
+t = 0:1:10
+I_data = 10 .* exp.(0.5 .* t) # r = 0.5
+
+# Model: I(t) = I0 * exp(r * t)
+@. model(t, p) = p[1] * exp(p[2] * t)
+p0 = [10.0, 0.5]
+
+fit = curve_fit(model, t, I_data, p0)
+r_est = fit.param[2]
+gamma = 0.1
+R0_est = 1 + r_est / gamma
+println("Estimated R0: ", R0_est)
+```
+
+=== Python Example
+
+```python
+import numpy as np
+from scipy.optimize import curve_fit
+
+# Synthetic data
+t = np.arange(0, 11)
+I_data = 10 * np.exp(0.5 * t)
+
+# Model
+def model(t, I0, r):
+    return I0 * np.exp(r * t)
+
+popt, pcov = curve_fit(model, t, I_data)
+r_est = popt[1]
+gamma = 0.1
+R0_est = 1 + r_est / gamma
+print(f"Estimated R0: {R0_est:.4f}")
+```
+
 == Interpretation
 
 - If $R_0 < 1$, the infection will die out in the long run.
