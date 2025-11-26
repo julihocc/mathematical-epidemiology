@@ -1,17 +1,12 @@
+import sys
+import os
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../src")))
+
 import numpy as np
 from scipy.integrate import odeint
 import matplotlib.pyplot as plt
-
-# Define the SIR model
-def sir_model(u, t, beta, gamma):
-    S, I, R = u
-    N = S + I + R
-    
-    dSdt = -beta * S * I / N
-    dIdt = beta * S * I / N - gamma * I
-    dRdt = gamma * I
-    
-    return [dSdt, dIdt, dRdt]
+from mathematical_epidemiology.models import sir_model
 
 # Parameters
 beta = 0.5
@@ -32,13 +27,12 @@ S, I, R = sol.T
 
 # Plot the results
 plt.figure(figsize=(10, 6))
-plt.plot(t, S, label='S')
-plt.plot(t, I, label='I')
-plt.plot(t, R, label='R')
-plt.xlabel('Time')
-plt.ylabel('Population')
-plt.title('SIR Model Simulation')
+plt.plot(t, S, label="S")
+plt.plot(t, I, label="I")
+plt.plot(t, R, label="R")
+plt.xlabel("Time")
+plt.ylabel("Population")
+plt.title("SIR Model Simulation")
 plt.legend()
 plt.grid(True)
-plt.savefig('assets/sir_plot_python.png')
-# plt.show()
+plt.savefig("assets/sir_plot_python.png")
