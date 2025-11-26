@@ -11,9 +11,9 @@ The SIR model is one of the simplest compartmental models, and many models are d
 The model is defined by the following system of ordinary differential equations:
 
 $
-frac(d S, d t) &= - beta S I \
-frac(d I, d t) &= beta S I - gamma I \
-frac(d R, d t) &= gamma I
+  frac(d S, d t) & = - beta S I \
+  frac(d I, d t) & = beta S I - gamma I \
+  frac(d R, d t) & = gamma I
 $
 
 where $beta$ is the transmission rate and $gamma$ is the recovery rate.
@@ -30,7 +30,7 @@ function sir_model!(du, u, p, t)
     S, I, R = u
     beta, gamma = p
     N = S + I + R
-    
+
     du[1] = -beta * S * I / N
     du[2] = beta * S * I / N - gamma * I
     du[3] = gamma * I
@@ -38,4 +38,26 @@ end
 ```
 
 The full script is available in `scripts/sir_model.jl`.
+
+== Python Implementation
+
+We can also simulate the SIR model using Python with `scipy` and `matplotlib`.
+
+```python
+import numpy as np
+from scipy.integrate import odeint
+import matplotlib.pyplot as plt
+
+def sir_model(u, t, beta, gamma):
+    S, I, R = u
+    N = S + I + R
+
+    dSdt = -beta * S * I / N
+    dIdt = beta * S * I / N - gamma * I
+    dRdt = gamma * I
+
+    return [dSdt, dIdt, dRdt]
+```
+
+The full script is available in `scripts/sir_model.py`.
 

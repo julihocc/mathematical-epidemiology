@@ -9,5 +9,5 @@ Models allow us to:
 - **Predict:** What will happen next?
 - **Control:** How can we stop it?
 
-In this book, we will explore various models, starting from the basic SIR model to more complex ones. We will also take a computational approach, using the Julia programming language to simulate these models and visualize the results.
+In this book, we will explore various models, starting from the basic SIR model to more complex ones. We will also take a computational approach, using both the Julia and Python programming languages to simulate these models and visualize the results.
 

@@ -8,11 +8,11 @@
   align(center + horizon)[
     #block(text(weight: 700, 1.75em, title))
     #v(1em, weak: true)
-    #date(datetime.today())
+    #datetime.today().display()
   ]
 
   // Table of contents.
-  outline(depth: 3, indent: true)
+  outline(depth: 3, indent: auto)
   pagebreak()
 
 
