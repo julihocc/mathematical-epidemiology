@@ -1,0 +1,12 @@
+# Typst
+*.pdf
+
+# Julia
+*.cov
+*.mem
+Manifest.toml
+Project.toml
+
+# OS
+.DS_Store
+Thumbs.db
