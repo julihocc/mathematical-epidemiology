@@ -7,6 +7,7 @@
   institution: "Tec de Monterrey",
 )
 
+#include "chapters/00-preface.typ"
 #include "chapters/01-introduction.typ"
 #include "chapters/02-sir-model.typ"
 #include "chapters/03-reproduction-number.typ"

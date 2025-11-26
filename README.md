@@ -33,3 +33,7 @@ Then you can run the scripts, for example:
 ```bash
 julia scripts/sir_model.jl
 ```
+
+## AI Disclosure
+
+This project was developed with the assistance of an AI system (Google's Gemini). The AI contributed to drafting the content, deriving mathematical formulas, and writing the code examples.
