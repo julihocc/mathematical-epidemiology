@@ -11,3 +11,4 @@
 #include "chapters/04-extensions.typ"
 #include "chapters/05-vaccination.typ"
 #include "chapters/06-next-generation-matrix.typ"
+#include "chapters/07-case-study.typ"
